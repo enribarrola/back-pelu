@@ -1,0 +1,15 @@
+WireGuard Server
+Public Key : EvVaPfcIW+/ZWW+pty5NKpvtTKZTldjl/WAUGgjOhFE=
+
+WireGuard 
+Public Key : g44C41uEx50XXVgOc1k79L0Y7vPI/63XbsJCYJ8OhG0=
+
+ public class FacturaRequest
+    {
+		 public List<Obligaciones> obligaciones { get; set; }
+
+		  public class Obligaciones
+        {
+            public string codigo { get; set; }
+        }
+	}

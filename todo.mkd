@@ -1,0 +1,14 @@
+*se puede pagar mezclando metodos de pago, pero no se aplica el descuento.
+descuento hay con: efectivo, transferencia y cheque.
+*el descuento solo se aplica para los servicios, no se aplica para los consumibles.
+*propina solo se puede dejar en efectivo,cheque o transferencia.
+*en caso de que se cierre la caja y venga una cliente pelotuda ver q hacer.
+
+
+
+factura:
+
+
+
+agregar?
+cupones
