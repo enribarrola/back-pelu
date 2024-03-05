@@ -1,23 +1,25 @@
 version: "3.3"
 services:
   wireguard:
-    image: linuxserver/wireguard
+    image: linuxserver/wireguard:latest
+    container_name: wireguard
     cap_add:
-      - NET ADMIN
+      - NET_ADMIN
       - SYS_MODULE
     environment:
-      - PUID= 1000
-      - PGID= 1000
-      - TZ= America/Mendoza
-      - SERVERURL= 186.122.250.25
-      - SERVERPORT= 51820
-      - PEER= 2
-      - PEERDNS= AUTO
-      - INTERNAL_SUBNET= 10.13.13.0
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+      - SERVERURL=186.122.250.25 # DNS dinámico
+      - SERVERPORT=51820
+      - PEERS=5 # 4 clientes
+      - PEERDNS=8.8.8.8, 8.8.4.4  # Quad9
+      - INTERNAL_SUBNET=10.2.0.0/24 # Red WireGuard
+      - ALLOWEDIPS=192.168.100.0/24 # Red que se enruta
+      - LOG_CONFS=false # No guardar conf en logs
     volumes:
-      - /root/wireguard:/config
+      - ~/volumes/wireguard:/config
       - /lib/modules:/lib/modules
-      - /usr/src:/usr/src
     ports:
       - 51820:51820/udp
     sysctls:
