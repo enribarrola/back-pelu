@@ -13,7 +13,7 @@ services:
       - SERVERURL=186.122.250.25 # DNS dinámico
       - SERVERPORT=51820
       - PEERS=5 # 4 clientes
-      - PEERDNS=8.8.8.8, 8.8.4.4  # Quad9
+      - PEERDNS=auto # Quad9
       - INTERNAL_SUBNET=10.2.0.0/24 # Red WireGuard
       - ALLOWEDIPS=192.168.100.0/24 # Red que se enruta
       - LOG_CONFS=false # No guardar conf en logs
@@ -24,4 +24,37 @@ services:
       - 51820:51820/udp
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
+    dns:
+      - 172.20.0.7
     restart: unless-stopped
+    networks:
+      containers:
+        ipv4_address: 172.20.0.6
+
+pihole:
+    container_name: pihole
+    image: pihole/pihole:v5.7
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "67:67/udp"
+      - "80:80/tcp"
+      - "443:443/tcp"
+    environment:
+      TZ: 'America/Mendoza'
+      WEBPASSWORD: '99.yoloco'
+    volumes:
+      - './etc-pihole/:/etc/pihole/'
+      - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
+    cap_add:
+      - NET_ADMIN
+    restart: unless-stopped
+    networks:
+      containers:
+        ipv4_address: 172.20.0.7
+
+networks:
+  containers:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
