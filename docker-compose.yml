@@ -9,14 +9,12 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/Madrid
+      - TZ=America/Asuncion
       - SERVERURL=186.122.250.25 # DNS dinámico
       - SERVERPORT=51820
       - PEERS=5 # 4 clientes
       - PEERDNS=auto # Quad9
-      - INTERNAL_SUBNET=10.2.0.0/24 # Red WireGuard
-      - ALLOWEDIPS=192.168.100.0/24 # Red que se enruta
-      - LOG_CONFS=false # No guardar conf en logs
+      - INTERNAL_SUBNET=10.13.13.0 # Red WireGuard
     volumes:
       - ~/volumes/wireguard:/config
       - /lib/modules:/lib/modules
