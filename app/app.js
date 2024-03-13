@@ -11,6 +11,7 @@ const fichaRoutes = require('./routes/fichaRoutes');
 const serviciosRoutes = require('./routes/serviciosRoutes');
 const empleadoRoutes = require('./routes/empleadoRoutes');
 const listaVariosRoutes = require('./routes/listaVariosRoutes');
+const facturaRoutes = require('./routes/facturaRoutes');
 // Agrega más routers según sea necesario
 
 // Montar los routers en las rutas específicas
@@ -19,6 +20,7 @@ app.use('/api', fichaRoutes);
 app.use('/api', serviciosRoutes);
 app.use('/api', empleadoRoutes);
 app.use('/api', listaVariosRoutes);
+app.use('/api', facturaRoutes);
 // Agrega más montajes de routers según sea necesario
 
 // Manejador de errores para rutas no encontradas
@@ -33,7 +35,7 @@ app.use((err, req, res, next) => {
 });
 
 // Iniciar el servidor
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`La aplicación está escuchando en http://localhost:${port}`);
 });

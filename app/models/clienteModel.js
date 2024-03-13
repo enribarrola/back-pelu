@@ -23,8 +23,8 @@ const InsertarCliente = async (nuevoCliente) => {
 
 const ObtenerClientePorId = async (id) => {
 	try {
-		const sql = `SELECT contribuyente, ruc, razon_social as razonSocial, pais, tipo_contribuyente as tipoContribuyente,
-		documento_tipo as documentoTipo, nro_documento as documentoNumero, celular,correo_electronico as email, id_cliente as codigo FROM clientes 
+		const sql = `SELECT contribuyente, ruc, razon_social as "razonSocial", pais, tipo_contribuyente as "tipoContribuyente",
+		documento_tipo as "documentoTipo", nro_documento::text as "documentoNumero", celular,correo_electronico as email, id_cliente::text as codigo, tipo_operacion as "tipoOperacion" FROM clientes 
 		WHERE nro_documento::text like $1 or lower(razon_social) like lower($2)`;
 		const result = await client.query(sql, ['%'+`${id}`+'%','%'+`${id}`+'%']);
 		return result.rows[0];
